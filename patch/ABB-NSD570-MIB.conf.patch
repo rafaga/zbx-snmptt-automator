@@ -1,0 +1,34 @@
+--- processed/abb/ABB-NSD570-MIB.conf	2014-07-18 08:11:58.071097071 -0500
++++ patch/source/ABB-NSD570-MIB.conf	2014-07-08 13:44:28.501778292 -0500
+@@ -8,6 +8,7 @@
+ #
+ EVENT alarmTriggered .1.3.6.1.4.1.17268.2818.4.1.0.3 "Status Events" Normal
+ FORMAT An alarmTriggered trap signifies that a new alarm has been triggered. $*
++EXEC python3 /var/lib/zabbixsrv/externalscripts/ABBDecoder.py --trap-source $aA --trap-name $N --trap-device "$3" --trap-code $5 --trap-alarm-type $2 -s http://10.0.0.1/zabbix -u apiusr -p apipwd -t 162 -d True
+ SDESC
+ An alarmTriggered trap signifies that a new alarm has been triggered.
+ Variables:
+@@ -26,6 +27,7 @@
+ #
+ EVENT alarmCleared .1.3.6.1.4.1.17268.2818.4.1.0.4 "Status Events" Normal
+ FORMAT An alarmCleared trap signifies that an existing alarm has been cleared. $*
++EXEC python3 /var/lib/zabbixsrv/externalscripts/ABBDecoder.py --trap-source $aA --trap-name $N --trap-device "$3" --trap-code $5 --trap-alarm-type $2 -s http://10.0.0.1/zabbix -u apiusr -p apipwd -t 162 -d True
+ SDESC
+ An alarmCleared trap signifies that an existing alarm has been cleared.
+ Variables:
+@@ -44,6 +46,7 @@
+ #
+ EVENT deviceIsAccessibleAgain .1.3.6.1.4.1.17268.2818.4.1.0.5 "Status Events" Normal
+ FORMAT A deviceIsAccessible trap signifies that a device is accessible again. $*
++EXEC python3 /var/lib/zabbixsrv/externalscripts/ABBDecoder.py --trap-source $aA --trap-name $N --trap-device "$3" -s http://10.0.0.1/zabbix -u apiusr -p apipwd -t 162 -d True
+ SDESC
+ A deviceIsAccessible trap signifies that a device is accessible again.
+ Variables:
+@@ -60,6 +63,7 @@
+ #
+ EVENT deviceIsNoMoreAccessible .1.3.6.1.4.1.17268.2818.4.1.0.6 "Status Events" Normal
+ FORMAT A deviceIsNoMoreAccessible trap signifies that a device is no more accessible. $*
++EXEC python3 /var/lib/zabbixsrv/externalscripts/ABBDecoder.py --trap-source $aA --trap-name $N --trap-device "$3" -s http://10.0.0.1/zabbix -u apiusr -p apipwd -t 162 -d True
+ SDESC
+ A deviceIsNoMoreAccessible trap signifies that a device is no more accessible.
+ Variables:

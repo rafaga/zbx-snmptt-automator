@@ -1,0 +1,43 @@
+--- processed/SWT3000/SIEMENS-SWT3000R35.conf	2014-07-18 08:14:22.433100724 -0500
++++ patch/source/SIEMENS-SWT3000R35.conf	2014-07-08 13:45:01.376777390 -0500
+@@ -1,13 +1,14 @@
++
+ #
+ #
+ #
+-#
+-MIB: SIEMENS-SWT3000R35-MIB (file:source/SWT3000/SIEMENS-SWT3000R35.MIB) converted on Fri Jul 18 08:14:22 2014 using snmpttconvertmib v1.4beta2
++MIB: SIEMENS-SWT3000R35-MIB (file:source/SWT3000/SIEMENS-SWT3000R35.MIB) converted on Tue Jun 17 12:08:57 2014 using snmpttconvertmib v1.4beta2
+ #
+ #
+ #
+ EVENT alarmGeneral .1.3.6.1.4.1.22638.3.6.5.11 "Status Events" Normal
+ FORMAT Trap sent when General-alarm is raised or cleared. $*
++EXEC python3 /etc/zabbix/externalscripts/swt3000Decoder.py --trap-source $aA --trap-name "$N" -s http://10.0.0.1/zabbix -u apiusr -p apipwd --trap-time "$3" --trap-severity $4 --trap-status $2
+ SDESC
+ Trap sent when General-alarm is raised or cleared.
+ Variables:
+@@ -22,6 +23,7 @@
+ #
+ EVENT alarmNonUrgent .1.3.6.1.4.1.22638.3.6.5.12 "Status Events" Normal
+ FORMAT Trap sent when NonUrgent-alarm is raised or cleared. $*
++EXEC python3 /etc/zabbix/externalscripts/swt3000Decoder.py --trap-source $aA --trap-name "$N" -s http://10.0.0.1/zabbix -u apiusr -p apipwd --trap-time "$3" --trap-severity $4 --trap-status $2
+ SDESC
+ Trap sent when NonUrgent-alarm is raised or cleared.
+ Variables:
+@@ -36,6 +38,7 @@
+ #
+ EVENT alarmTx .1.3.6.1.4.1.22638.3.6.5.13 "Status Events" Normal
+ FORMAT Trap sent when Transmitter-alarm is raised or cleared. $*
++EXEC python3 /etc/zabbix/externalscripts/swt3000Decoder.py --trap-source $aA --trap-name "$N" -s http://10.0.0.1/zabbix -u apiusr -p apipwd --trap-time "$3" --trap-severity $4 --trap-status $2
+ SDESC
+ Trap sent when Transmitter-alarm is raised or cleared.
+ Variables:
+@@ -50,6 +53,7 @@
+ #
+ EVENT alarmRx .1.3.6.1.4.1.22638.3.6.5.14 "Status Events" Normal
+ FORMAT Trap sent when Receiver-alarm is raised or cleared. $*
++EXEC python3 /etc/zabbix/externalscripts/swt3000Decoder.py --trap-source $aA --trap-name "$N" -s http://10.0.0.1/zabbix -u apiusr -p apipwd --trap-time "$3" --trap-severity $4 --trap-status $2
+ SDESC
+ Trap sent when Receiver-alarm is raised or cleared.
+ Variables:
